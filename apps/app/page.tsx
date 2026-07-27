@@ -77,9 +77,9 @@ export default function Home() {
       adapter={adapter}
       config={{ theme: { primary: "#588aff", radius: "0.625rem" } }}
     >
-      <div className="min-h-screen bg-slate-50/50 dark:bg-zinc-950 text-foreground selection:bg-blue-500/20">
+      <div className="min-h-screen bg-background text-foreground transition-colors duration-200">
         {/* Navigation */}
-        <header className="sticky top-0 z-30 border-b border-zinc-200/40 dark:border-zinc-800/40 bg-background/80 backdrop-blur-md">
+        <header className="sticky top-0 z-30 border-b border-border bg-card/80 backdrop-blur-md">
           <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-3.5">
             <div className="flex items-center gap-3">
               <div className="flex size-8 items-center justify-center rounded-lg bg-blue-600 text-white font-mono text-xs font-bold shadow-xs">
@@ -93,16 +93,16 @@ export default function Home() {
             <button
               type="button"
               onClick={toggleTheme}
-              className="inline-flex items-center gap-2 rounded-lg border border-zinc-200/50 dark:border-zinc-800/50 bg-background px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted transition-colors cursor-pointer shadow-xs"
+              className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted transition-colors cursor-pointer shadow-xs"
             >
-              {mounted && isDark ? "☀️ Light" : "🌙 Dark"}
+              {mounted && isDark ? "☀️ Light Mode" : "🌙 Dark Mode"}
             </button>
           </div>
         </header>
 
         <main className="mx-auto max-w-5xl px-6 py-10 space-y-10">
           {/* Header Section */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-6 border-b border-zinc-200/40 dark:border-zinc-800/40">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-6 border-b border-border">
             <div className="space-y-1">
               <h1 className="text-2xl font-bold tracking-tight text-foreground">
                 Media Uploader Sandbox
@@ -124,9 +124,9 @@ export default function Home() {
           {/* Component Grid */}
           <div className="grid gap-6 sm:grid-cols-2">
             {/* Box 1:1 */}
-            <div className="rounded-2xl border border-zinc-200/40 dark:border-zinc-800/40 bg-background p-6 space-y-3 shadow-xs">
+            <div className="rounded-2xl border border-border bg-card p-6 space-y-3 shadow-xs">
               <div className="flex items-center justify-between">
-                <span className="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
+                <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
                   Box Variant (1:1)
                 </span>
                 <span className="text-xs text-muted-foreground">1000 × 1000 px</span>
@@ -148,9 +148,9 @@ export default function Home() {
             </div>
 
             {/* Cover 16:9 */}
-            <div className="rounded-2xl border border-zinc-200/40 dark:border-zinc-800/40 bg-background p-6 space-y-3 shadow-xs">
+            <div className="rounded-2xl border border-border bg-card p-6 space-y-3 shadow-xs">
               <div className="flex items-center justify-between">
-                <span className="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
+                <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
                   Cover Variant (16:9)
                 </span>
                 <span className="text-xs text-muted-foreground">Image or Video</span>
@@ -169,9 +169,9 @@ export default function Home() {
             </div>
 
             {/* Avatar Round */}
-            <div className="rounded-2xl border border-zinc-200/40 dark:border-zinc-800/40 bg-background p-6 space-y-3 shadow-xs">
+            <div className="rounded-2xl border border-border bg-card p-6 space-y-3 shadow-xs">
               <div className="flex items-center justify-between">
-                <span className="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
+                <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
                   Avatar Variant
                 </span>
                 <span className="text-xs text-muted-foreground">Round Profile</span>
@@ -192,9 +192,9 @@ export default function Home() {
             </div>
 
             {/* Button Variant */}
-            <div className="rounded-2xl border border-zinc-200/40 dark:border-zinc-800/40 bg-background p-6 space-y-3 shadow-xs">
+            <div className="rounded-2xl border border-border bg-card p-6 space-y-3 shadow-xs">
               <div className="flex items-center justify-between">
-                <span className="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
+                <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
                   Button Variant
                 </span>
                 <span className="text-xs text-muted-foreground">Trigger Button</span>
@@ -212,9 +212,9 @@ export default function Home() {
             </div>
 
             {/* Dropzone Spanning Both Columns */}
-            <div className="sm:col-span-2 rounded-2xl border border-zinc-200/40 dark:border-zinc-800/40 bg-background p-6 space-y-3 shadow-xs">
+            <div className="sm:col-span-2 rounded-2xl border border-border bg-card p-6 space-y-3 shadow-xs">
               <div className="flex items-center justify-between">
-                <span className="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
+                <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
                   Dropzone Variant
                 </span>
                 <span className="text-xs text-muted-foreground">Drag & Drop Area</span>
@@ -233,7 +233,7 @@ export default function Home() {
         </main>
 
         {/* Footer */}
-        <footer className="mx-auto max-w-5xl px-6 py-6 border-t border-zinc-200/40 dark:border-zinc-800/40 text-xs text-muted-foreground flex items-center justify-between">
+        <footer className="mx-auto max-w-5xl px-6 py-6 border-t border-border text-xs text-muted-foreground flex items-center justify-between">
           <span>@hellomoksedul/media-uploader</span>
           <span>Zero-config React Package</span>
         </footer>
