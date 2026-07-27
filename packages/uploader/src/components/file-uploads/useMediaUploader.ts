@@ -30,8 +30,6 @@ export function useMediaUploader({
   const resolvedFileType = onlyVideo ? "video" : fileType;
   const [activeTab, setActiveTab] = useState<number>(1);
   const [searchQuery, setSearchQuery] = useState("");
-  const [unsplashSearch, setUnsplashSearch] = useState("");
-  const [unsplashQuery, setUnsplashQuery] = useState("");
   const [selectedFileUrls, setSelectedFileUrls] = useState<string[]>([]);
   const [selectedFileRatio, setSelectedFileRatio] = useState<number | null>(
     null,
@@ -48,7 +46,6 @@ export function useMediaUploader({
     loadMore: onLoadMore,
     uploadMedia,
     deleteMedia: removeItem,
-    searchUnsplash,
     isLimitError,
     onLimitExceeded,
   } = useMediaContext();
@@ -61,14 +58,6 @@ export function useMediaUploader({
   const setSearchInput = (query: string) => {
     // handled by provider if needed
   };
-
-  // Debounce unsplash search
-  useEffect(() => {
-    const timeout = setTimeout(() => {
-      setUnsplashQuery(unsplashSearch);
-    }, 600);
-    return () => clearTimeout(timeout);
-  }, [unsplashSearch]);
 
   useEffect(() => {
     if (resolvedFileType === "image") setFolder("images");
@@ -322,9 +311,6 @@ export function useMediaUploader({
     setActiveTab,
     searchQuery,
     setSearchQuery,
-    unsplashSearch,
-    setUnsplashSearch,
-    unsplashQuery,
     selectedFileUrls,
     isCropping,
     setIsCropping,

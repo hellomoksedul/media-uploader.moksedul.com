@@ -6,7 +6,7 @@ import {
   MediaUploadField as _MediaUploadField,
   ApiMedia,
 } from "@hellomoksedul/media-uploader";
-import React, { useState } from "react";
+import React, { useMemo, useRef, useState } from "react";
 import { toast } from "sonner";
 
 // Loose casts to keep the sandbox decoupled from the library's exact prop types.
@@ -75,9 +75,6 @@ export default function Home() {
     document.documentElement.classList.toggle("dark", dark);
     return dark;
   });
-  // Backing store only for the dialog's "My Files" tab — NOT shown on the page.
-  const [files, setFiles] = useState<ApiMedia[]>([]);
-
   const toggleTheme = () => {
     const next = !isDark;
     setIsDark(next);
@@ -85,56 +82,46 @@ export default function Home() {
     localStorage.setItem("theme", next ? "dark" : "light");
   };
 
-  const uploadMedia = async (file: File, folder: string) =>
-    new Promise<{ success: boolean; data?: ApiMedia; error?: string }>(
-      (resolve) => {
-        setTimeout(() => {
-          const media: ApiMedia = {
-            id: Math.random().toString(36).slice(2, 11),
-            url: URL.createObjectURL(file),
-            filename: file.name,
-            contentType: file.type,
-            sizeBytes: file.size,
-            folder: folder || "images",
-            width: 800,
-            height: 600,
-            createdAt: new Date(),
-          };
-          setFiles((prev) => [media, ...prev]);
-          toast.success(`Uploaded ${file.name}`);
-          resolve({ success: true, data: media });
-        }, 1000);
+  // In-memory mock "backend" for the sandbox. A real app would call server
+  // actions / fetch here instead — the shape below is all the provider needs.
+  const store = useRef<ApiMedia[]>([]);
+  const adapter = useMemo(
+    () => ({
+      list: async () => ({ success: true, data: store.current }),
+      upload: async (file: File, folder: string) => {
+        const media: ApiMedia = {
+          id: Math.random().toString(36).slice(2, 11),
+          url: URL.createObjectURL(file),
+          filename: file.name,
+          contentType: file.type,
+          sizeBytes: file.size,
+          folder: folder || "images",
+          width: 800,
+          height: 600,
+          createdAt: new Date(),
+        };
+        store.current = [media, ...store.current];
+        toast.success(`Uploaded ${file.name}`);
+        return { success: true, data: media };
       },
-    );
-
-  const deleteMedia = async (id: string) => {
-    setFiles((prev) => prev.filter((m) => m.id !== id));
-    return { success: true };
-  };
-  const updateMedia = async (
-    id: string,
-    updates: { filename?: string; folder?: string },
-  ) => {
-    setFiles((prev) =>
-      prev.map((m) => (m.id === id ? { ...m, ...updates } : m)),
-    );
-    return { success: true };
-  };
+      remove: async (id: string) => {
+        store.current = store.current.filter((m) => m.id !== id);
+        return { success: true };
+      },
+      update: async (id: string, patch: { filename?: string }) => {
+        store.current = store.current.map((m) =>
+          m.id === id ? { ...m, ...patch } : m,
+        );
+        return { success: true, data: store.current.find((m) => m.id === id) };
+      },
+    }),
+    [],
+  );
 
   return (
     <MediaProvider
-      value={{
-        uploadMedia,
-        deleteMedia,
-        updateMedia,
-        searchUnsplash: async () => ({ success: true, data: [] }),
-        mediaFiles: files,
-        isLoading: false,
-        isLoadingMore: false,
-        hasMore: false,
-        loadMore: () => {},
-        config: { theme: { primary: "#588aff", radius: "0.625rem" } },
-      }}
+      adapter={adapter}
+      config={{ theme: { primary: "#588aff", radius: "0.625rem" } }}
     >
       <main className="min-h-screen bg-background text-foreground p-8 transition-colors duration-300">
         <div className="mx-auto w-full max-w-4xl space-y-10">

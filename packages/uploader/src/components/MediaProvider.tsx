@@ -1,4 +1,5 @@
 import React, { createContext, useContext } from "react";
+import { useMediaLibrary } from "./file-uploads/useMediaLibrary";
 
 export interface ApiMedia {
   id: string;
@@ -64,7 +65,8 @@ export interface MediaContextType {
     id: string,
     data: { filename?: string; folder?: string },
   ) => Promise<{ success: boolean; data?: ApiMedia; error?: string }>;
-  searchUnsplash: (
+  /** @deprecated Unsplash support was removed. Kept optional for back-compat. */
+  searchUnsplash?: (
     query: string,
     page: number,
   ) => Promise<{ success: boolean; data?: UnsplashImage[]; error?: string }>;
@@ -82,16 +84,91 @@ export interface MediaContextType {
   onLimitExceeded?: () => void;
 }
 
+// ── Simple adapter API ──────────────────────────────────────────────────────
+// Hand the provider a few raw async functions + a `map`, and it owns all the
+// state (list, pagination, loading) internally. This is the recommended way to
+// wire the uploader to a backend.
+
+export interface MediaListParams {
+  page: number;
+  limit: number;
+  search: string;
+}
+
+export interface MediaListResult {
+  success: boolean;
+  /** Raw backend items — each is passed through `map` to become an ApiMedia. */
+  data?: any[];
+  /** Any one of these lets the provider work out `hasMore`. */
+  meta?: { totalPages?: number; total?: number; hasMore?: boolean };
+  error?: string;
+}
+
+export interface MediaMutationResult {
+  success: boolean;
+  /** Raw backend item (or array; first is used). Passed through `map`. */
+  data?: any;
+  error?: string;
+}
+
+export interface MediaAdapter {
+  /** Fetch a page of media. Required. */
+  list: (params: MediaListParams) => Promise<MediaListResult>;
+  /** Upload one file. Required. */
+  upload: (file: File, folder: string) => Promise<MediaMutationResult>;
+  /** Delete by id. Optional — omit and the delete UI is hidden/local-only. */
+  remove?: (id: string) => Promise<{ success: boolean; error?: string }>;
+  /** Rename / move. Optional — omit and updates are applied locally. */
+  update?: (
+    id: string,
+    patch: { filename?: string; folder?: string },
+  ) => Promise<MediaMutationResult>;
+}
+
+/** Converts a raw backend item into the library's ApiMedia shape. */
+export type MediaMapFn = (raw: any) => ApiMedia;
+
+export type MediaProviderProps =
+  | {
+      children: React.ReactNode;
+      /** Recommended: a few raw async functions; the provider owns the state. */
+      adapter: MediaAdapter;
+      map?: MediaMapFn;
+      pageSize?: number;
+      config?: MediaConfig;
+      value?: never;
+    }
+  | {
+      children: React.ReactNode;
+      /** Advanced/legacy: supply the fully-built context yourself. */
+      value: MediaContextType;
+      adapter?: never;
+      map?: never;
+      pageSize?: never;
+      config?: never;
+    };
+
 const MediaContext = createContext<MediaContextType | null>(null);
 
-export function MediaProvider({
-  children,
-  value,
-}: {
-  children: React.ReactNode;
-  value: MediaContextType;
-}) {
+export function MediaProvider(props: MediaProviderProps) {
+  const { children } = props;
+  const usingAdapter = "adapter" in props && !!props.adapter;
+
+  // Hook is always called (never conditional); passing null makes it inert.
+  const built = useMediaLibrary(
+    usingAdapter
+      ? {
+          adapter: props.adapter,
+          map: props.map,
+          pageSize: props.pageSize,
+          config: props.config,
+        }
+      : null,
+  );
+
+  const value: MediaContextType = usingAdapter ? built : props.value;
   const theme = value.config?.theme;
+
   // Tailwind v4 (CSS-first). The package's `@theme inline` maps `bg-primary`
   // etc. straight to these CSS variables, so overriding them here re-themes
   // every component at runtime. Values are plain CSS colors/lengths

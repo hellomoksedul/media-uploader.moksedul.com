@@ -7,11 +7,9 @@ import {
 import { Input } from "@/components/ui/input";
 import { Search as _Search } from "lucide-react";
 import React from "react";
-import { FaUnsplash as _FaUnsplash } from "react-icons/fa";
 import { FiUpload as _FiUpload } from "react-icons/fi";
 import { MdOutlineLaptopWindows as _MdOutlineLaptopWindows } from "react-icons/md";
 import { ImageEditorDialog as _ImageEditorDialog } from "../ImageEditorDialog";
-import _UnsplashTab from "./UnsplashTab";
 import _UploadedFiles from "./UploadedFiles";
 import _UploadFiles from "./UploadFiles";
 import { useMediaUploader } from "./useMediaUploader";
@@ -19,9 +17,6 @@ import _VideoUpload from "./VideoUpload";
 
 const ImageEditorDialog = _ImageEditorDialog as unknown as (
   props: React.ComponentProps<typeof _ImageEditorDialog>,
-) => any;
-const UnsplashTab = _UnsplashTab as unknown as (
-  props: React.ComponentProps<typeof _UnsplashTab>,
 ) => any;
 const UploadedFiles = _UploadedFiles as unknown as (
   props: React.ComponentProps<typeof _UploadedFiles>,
@@ -34,7 +29,6 @@ const VideoUpload = _VideoUpload as unknown as (
 ) => any;
 
 const Search = _Search as unknown as (props: Record<string, any>) => any;
-const FaUnsplash = _FaUnsplash as unknown as (props: Record<string, any>) => any;
 const FiUpload = _FiUpload as unknown as (props: Record<string, any>) => any;
 const MdOutlineLaptopWindows = _MdOutlineLaptopWindows as unknown as (props: Record<string, any>) => any;
 
@@ -75,9 +69,6 @@ const MediaUploader: React.FC<MediaUploaderProps> = (props) => {
     setActiveTab,
     searchQuery,
     setSearchQuery,
-    unsplashSearch,
-    setUnsplashSearch,
-    unsplashQuery,
     selectedFileUrls,
     isCropping,
     setIsCropping,
@@ -131,24 +122,7 @@ const MediaUploader: React.FC<MediaUploaderProps> = (props) => {
         />
       ),
     },
-    {
-      id: 6,
-      title: "Unsplash",
-      icon: <FaUnsplash className="w-4 h-4" />,
-      section: (
-        <UnsplashTab
-          selectedUrl={selectedFileUrls[0]}
-          onImageSelect={(url) =>
-            handleFileSelect(url, imageRatio || null, false, "image")
-          }
-          searchQuery={unsplashQuery}
-        />
-      ),
-    },
-  ].filter((tab) => {
-    if (resolvedFileType === "video" && tab.id === 6) return false;
-    return true;
-  });
+  ];
 
   return (
     <AlertDialog open={true} onOpenChange={onClose}>
@@ -234,22 +208,6 @@ const MediaUploader: React.FC<MediaUploaderProps> = (props) => {
                           placeholder="Search files..."
                           value={searchQuery}
                           onChange={(e) => setSearchQuery(e.target.value)}
-                          className="pl-9 pr-4 h-9 bg-background dark:bg-background rounded-lg border-border/60 dark:border-border/80 focus-visible:ring-primary/20 shadow-none text-sm"
-                        />
-                      </div>
-                    </div>
-                  )}
-                  {activeTab === 6 && (
-                    <div className="flex items-center gap-2 w-full sm:w-auto">
-                      <div className="relative w-full sm:w-64">
-                        <Search
-                          className="absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground"
-                          size={16}
-                        />
-                        <Input
-                          placeholder="Search Unsplash..."
-                          value={unsplashSearch}
-                          onChange={(e) => setUnsplashSearch(e.target.value)}
                           className="pl-9 pr-4 h-9 bg-background dark:bg-background rounded-lg border-border/60 dark:border-border/80 focus-visible:ring-primary/20 shadow-none text-sm"
                         />
                       </div>
