@@ -72,7 +72,7 @@ export default function UnsplashTab({
     <div className="flex flex-col gap-4">
 
       <div className="flex flex-col gap-2">
-        <div className="w-full grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 2xl:grid-cols-6 gap-3">
+        <div className="w-full" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(130px, 1fr))", gap: "12px" }}>
           {isLoading
             ? Array(12)
                 .fill(0)

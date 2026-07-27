@@ -41,9 +41,12 @@ pnpm add @hellomoksedul/media-uploader
 In your root `layout.tsx` (or equivalent), import the package styles **after** your own global CSS:
 
 ```tsx
-// layout.tsx
-import "./globals.css";                              // your CSS first
-import "@hellomoksedul/media-uploader/styles.css";  // package CSS last
+// layout.tsx (or in globals.css)
+import "./globals.css";
+import "@hellomoksedul/media-uploader/styles.css";
+
+// In Tailwind CSS v4 (globals.css):
+// @import "@hellomoksedul/media-uploader/styles.css" layer(utilities);
 ```
 
 > ⚠️ Order matters. The package CSS must come **last** so its utilities don't get overridden.

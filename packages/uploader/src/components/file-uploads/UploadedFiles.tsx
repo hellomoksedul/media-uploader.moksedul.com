@@ -168,7 +168,7 @@ export default function UploadedFiles({
           viewMode === "list" ? (
             <div className="w-full flex flex-col">{renderSkeletons()}</div>
           ) : (
-            <div className="w-full overflow-y-auto grid grid-cols-2 md:grid-cols-5 lg:grid-cols-7 2xl:grid-cols-8 gap-3">
+            <div className="w-full overflow-y-auto" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(130px, 1fr))", gap: "12px" }}>
               {renderSkeletons()}
             </div>
           )
@@ -358,7 +358,7 @@ export default function UploadedFiles({
 
   return (
     <div className="flex flex-col gap-2">
-      <div className="w-full overflow-y-auto grid grid-cols-2 md:grid-cols-5 lg:grid-cols-7 2xl:grid-cols-8 gap-3">
+      <div className="w-full overflow-y-auto" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(130px, 1fr))", gap: "12px" }}>
         {isLoading ? (
           renderSkeletons()
         ) : (

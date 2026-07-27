@@ -1,16 +1,13 @@
-@import "tailwindcss" utilities;
+@import "tailwindcss";
 
-/* Third-party cropper styles — bundled into this package's single stylesheet */
+/* Third-party cropper styles */
 @import "react-advanced-cropper/dist/style.css";
 @import "react-mobile-cropper/dist/style.css";
 
-/* v4-native animation utilities (animate-in/out, fade, zoom, slide, accordion). */
+/* v4-native animation utilities */
 @import "tw-animate-css";
 
-/* Scan this package's own components so their utility classes are compiled
-   into the shipped stylesheet. */
-@source "./index.ts";
-@source "./components/**/*.{ts,tsx}";
+@source "../src";
 
 @custom-variant dark (&:is(.dark *));
 
