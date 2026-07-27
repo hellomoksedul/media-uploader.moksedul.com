@@ -1,13 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "sonner";
-// IMPORTANT: import the app's own Tailwind FIRST, then the package stylesheet
-// LAST. Both emit an `@layer utilities` block that merges by name, and within a
-// layer the later source wins — so the package CSS must come last, otherwise the
-// app's utilities (e.g. `flex-col`) override the package's responsive ones
-// (`md:flex-row`) and the dialog/editor collapse into the mobile layout.
 import "./globals.css";
-import "@hellomoksedul/media-uploader/styles.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
