@@ -80,8 +80,8 @@
   --accent: #27272a;
   --accent-foreground: #fafafa;
   --destructive: #7f1d1d;
-  --border: #27272a;
-  --input: #27272a;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.1);
   --ring: #3f3f46;
 }
 

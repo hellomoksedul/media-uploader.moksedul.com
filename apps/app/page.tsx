@@ -110,7 +110,8 @@ export default function Home() {
                 Media Uploader Sandbox
               </h1>
               <p className="text-sm text-muted-foreground">
-                Zero-config React component suite with built-in cropper, filters, and dialogs.
+                Zero-config React component suite with built-in cropper,
+                filters, and dialogs.
               </p>
             </div>
 
@@ -126,9 +127,11 @@ export default function Home() {
           {/* Component Grid */}
           <div className="grid gap-8 sm:grid-cols-2">
             {/* Box 1:1 */}
-            <div className="rounded-xl border border-border/70 bg-card p-5 space-y-3">
+            <div className="rounded-xl border border-zinc-200/70 dark:border-zinc-800/60 bg-card p-5 space-y-3">
               <div className="flex items-center justify-between text-xs">
-                <span className="font-semibold text-foreground">Box Variant (1:1)</span>
+                <span className="font-semibold text-foreground">
+                  Box Variant (1:1)
+                </span>
                 <span className="text-muted-foreground">1000 × 1000 px</span>
               </div>
               <div className="max-w-52 mx-auto pt-1">
@@ -148,9 +151,11 @@ export default function Home() {
             </div>
 
             {/* Cover 16:9 */}
-            <div className="rounded-xl border border-border/70 bg-card p-5 space-y-3">
+            <div className="rounded-xl border border-zinc-200/70 dark:border-zinc-800/60 bg-card p-5 space-y-3">
               <div className="flex items-center justify-between text-xs">
-                <span className="font-semibold text-foreground">Cover Variant (16:9)</span>
+                <span className="font-semibold text-foreground">
+                  Cover Variant (16:9)
+                </span>
                 <span className="text-muted-foreground">Image or Video</span>
               </div>
               <div className="pt-1">
@@ -167,9 +172,11 @@ export default function Home() {
             </div>
 
             {/* Avatar Round */}
-            <div className="rounded-xl border border-border/70 bg-card p-5 space-y-3">
+            <div className="rounded-xl border border-zinc-200/70 dark:border-zinc-800/60 bg-card p-5 space-y-3">
               <div className="flex items-center justify-between text-xs">
-                <span className="font-semibold text-foreground">Avatar Variant</span>
+                <span className="font-semibold text-foreground">
+                  Avatar Variant
+                </span>
                 <span className="text-muted-foreground">Round Profile</span>
               </div>
               <div className="flex justify-center pt-2">
@@ -188,9 +195,11 @@ export default function Home() {
             </div>
 
             {/* Button Variant */}
-            <div className="rounded-xl border border-border/70 bg-card p-5 space-y-3">
+            <div className="rounded-xl border border-zinc-200/70 dark:border-zinc-800/60 bg-card p-5 space-y-3">
               <div className="flex items-center justify-between text-xs">
-                <span className="font-semibold text-foreground">Button Variant</span>
+                <span className="font-semibold text-foreground">
+                  Button Variant
+                </span>
                 <span className="text-muted-foreground">Trigger Button</span>
               </div>
               <div className="flex items-center justify-center h-28 pt-1">
@@ -206,9 +215,11 @@ export default function Home() {
             </div>
 
             {/* Dropzone Spanning Both Columns */}
-            <div className="sm:col-span-2 rounded-xl border border-border/70 bg-card p-5 space-y-3">
+            <div className="sm:col-span-2 rounded-xl border border-zinc-200/70 dark:border-zinc-800/60 bg-card p-5 space-y-3">
               <div className="flex items-center justify-between text-xs">
-                <span className="font-semibold text-foreground">Dropzone Variant</span>
+                <span className="font-semibold text-foreground">
+                  Dropzone Variant
+                </span>
                 <span className="text-muted-foreground">Drag & Drop Area</span>
               </div>
               <div className="pt-1">
