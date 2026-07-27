@@ -30,7 +30,9 @@ const VideoUpload = _VideoUpload as unknown as (
 
 const Search = _Search as unknown as (props: Record<string, any>) => any;
 const FiUpload = _FiUpload as unknown as (props: Record<string, any>) => any;
-const MdOutlineLaptopWindows = _MdOutlineLaptopWindows as unknown as (props: Record<string, any>) => any;
+const MdOutlineLaptopWindows = _MdOutlineLaptopWindows as unknown as (
+  props: Record<string, any>,
+) => any;
 
 interface MediaUploaderProps {
   onClose: () => void;
@@ -127,7 +129,7 @@ const MediaUploader: React.FC<MediaUploaderProps> = (props) => {
   return (
     <AlertDialog open={true} onOpenChange={onClose}>
       <AlertDialogContent
-        className="w-[95vw] max-w-[1200px] h-[90vh] max-h-[95vh] gap-0 flex flex-col overflow-hidden p-4 lg:p-6"
+        className="w-[95vw]! max-w-[1200px]! h-[90vh]! max-h-[95vh]! gap-0 flex flex-col overflow-hidden p-4 lg:p-6"
         style={{ width: "95vw", maxWidth: "1200px", height: "90vh" }}
       >
         {isCropping && selectedFileUrls.length > 0 && (
