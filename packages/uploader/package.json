@@ -1,6 +1,6 @@
 {
   "name": "@hellomoksedul/media-uploader",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "private": false,
   "description": "A fully customizable, headless media upload library for React & Next.js. Includes image editor, cropper, filters, Unsplash integration and 4 field variants.",
   "author": "Moksedul Islam <hello@moksedul.com>",
