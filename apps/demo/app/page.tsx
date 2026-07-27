@@ -65,16 +65,18 @@ export default function Home() {
   const [banner, setBanner] = useState("");
   const [attachment, setAttachment] = useState("");
   // Lazy initializer runs only on client — avoids setState inside an effect
-  const [isDark, setIsDark] = useState(() => {
-    if (typeof window === "undefined") return false;
+  const [isDark, setIsDark] = useState(false);
+  const [mounted, setMounted] = useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
     const stored = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia(
-      "(prefers-color-scheme: dark)",
-    ).matches;
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
     const dark = stored === "dark" || (!stored && prefersDark);
+    setIsDark(dark);
     document.documentElement.classList.toggle("dark", dark);
-    return dark;
-  });
+  }, []);
+
   const toggleTheme = () => {
     const next = !isDark;
     setIsDark(next);
@@ -144,8 +146,8 @@ export default function Home() {
               title={isDark ? "Switch to light mode" : "Switch to dark mode"}
               className="flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-2 text-sm font-medium text-foreground shadow-sm transition-all hover:bg-muted"
             >
-              {isDark ? <SunIcon /> : <MoonIcon />}
-              <span>{isDark ? "Light" : "Dark"}</span>
+              {mounted && isDark ? <SunIcon /> : <MoonIcon />}
+              <span>{mounted ? (isDark ? "Light" : "Dark") : "Theme"}</span>
             </button>
           </header>
 
