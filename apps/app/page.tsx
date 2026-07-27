@@ -77,62 +77,59 @@ export default function Home() {
       adapter={adapter}
       config={{ theme: { primary: "#588aff", radius: "0.625rem" } }}
     >
-      <div className="min-h-screen bg-background text-foreground selection:bg-blue-500/20">
+      <div className="min-h-screen bg-slate-50/50 dark:bg-zinc-950 text-foreground selection:bg-blue-500/20">
         {/* Navigation */}
-        <header className="sticky top-0 z-30 border-b border-border/50 bg-background/80 backdrop-blur-md">
-          <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
+        <header className="sticky top-0 z-30 border-b border-zinc-200/40 dark:border-zinc-800/40 bg-background/80 backdrop-blur-md">
+          <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-3.5">
             <div className="flex items-center gap-3">
-              <div className="flex size-8 items-center justify-center rounded-lg bg-foreground text-background font-mono text-xs font-bold">
+              <div className="flex size-8 items-center justify-center rounded-lg bg-blue-600 text-white font-mono text-xs font-bold shadow-xs">
                 MU
               </div>
-              <div className="flex flex-col">
-                <span className="text-sm font-semibold tracking-tight text-foreground">
-                  @hellomoksedul/media-uploader
-                </span>
-              </div>
+              <span className="text-sm font-semibold tracking-tight text-foreground">
+                @hellomoksedul/media-uploader
+              </span>
             </div>
 
             <button
               type="button"
               onClick={toggleTheme}
-              className="inline-flex items-center gap-2 rounded-lg border border-border bg-background px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted transition-colors cursor-pointer"
+              className="inline-flex items-center gap-2 rounded-lg border border-zinc-200/50 dark:border-zinc-800/50 bg-background px-3 py-1.5 text-xs font-medium text-foreground hover:bg-muted transition-colors cursor-pointer shadow-xs"
             >
               {mounted && isDark ? "☀️ Light" : "🌙 Dark"}
             </button>
           </div>
         </header>
 
-        <main className="mx-auto max-w-5xl px-6 py-12 space-y-12">
+        <main className="mx-auto max-w-5xl px-6 py-10 space-y-10">
           {/* Header Section */}
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-8 border-b border-border/50">
-            <div className="space-y-1.5">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-6 pb-6 border-b border-zinc-200/40 dark:border-zinc-800/40">
+            <div className="space-y-1">
               <h1 className="text-2xl font-bold tracking-tight text-foreground">
                 Media Uploader Sandbox
               </h1>
               <p className="text-sm text-muted-foreground">
-                Zero-config React component suite with built-in cropper,
-                filters, and dialogs.
+                Zero-config React component suite with built-in cropper, filters, and dialogs.
               </p>
             </div>
 
             <button
               type="button"
               onClick={() => setIsUploadOpen(true)}
-              className="inline-flex items-center justify-center rounded-lg bg-blue-600 px-4 py-2.5 text-sm font-medium text-white shadow-xs hover:bg-blue-700 transition-colors cursor-pointer shrink-0"
+              className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white shadow-xs hover:bg-blue-700 transition-colors cursor-pointer shrink-0"
             >
               Open Full Dialog
             </button>
           </div>
 
           {/* Component Grid */}
-          <div className="grid gap-8 sm:grid-cols-2">
+          <div className="grid gap-6 sm:grid-cols-2">
             {/* Box 1:1 */}
-            <div className="rounded-xl border border-zinc-200/70 dark:border-zinc-800/60 bg-card p-5 space-y-3">
-              <div className="flex items-center justify-between text-xs">
-                <span className="font-semibold text-foreground">
+            <div className="rounded-2xl border border-zinc-200/40 dark:border-zinc-800/40 bg-background p-6 space-y-3 shadow-xs">
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
                   Box Variant (1:1)
                 </span>
-                <span className="text-muted-foreground">1000 × 1000 px</span>
+                <span className="text-xs text-muted-foreground">1000 × 1000 px</span>
               </div>
               <div className="max-w-52 mx-auto pt-1">
                 <MediaUploadField
@@ -151,12 +148,12 @@ export default function Home() {
             </div>
 
             {/* Cover 16:9 */}
-            <div className="rounded-xl border border-zinc-200/70 dark:border-zinc-800/60 bg-card p-5 space-y-3">
-              <div className="flex items-center justify-between text-xs">
-                <span className="font-semibold text-foreground">
+            <div className="rounded-2xl border border-zinc-200/40 dark:border-zinc-800/40 bg-background p-6 space-y-3 shadow-xs">
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
                   Cover Variant (16:9)
                 </span>
-                <span className="text-muted-foreground">Image or Video</span>
+                <span className="text-xs text-muted-foreground">Image or Video</span>
               </div>
               <div className="pt-1">
                 <MediaUploadField
@@ -172,12 +169,12 @@ export default function Home() {
             </div>
 
             {/* Avatar Round */}
-            <div className="rounded-xl border border-zinc-200/70 dark:border-zinc-800/60 bg-card p-5 space-y-3">
-              <div className="flex items-center justify-between text-xs">
-                <span className="font-semibold text-foreground">
+            <div className="rounded-2xl border border-zinc-200/40 dark:border-zinc-800/40 bg-background p-6 space-y-3 shadow-xs">
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
                   Avatar Variant
                 </span>
-                <span className="text-muted-foreground">Round Profile</span>
+                <span className="text-xs text-muted-foreground">Round Profile</span>
               </div>
               <div className="flex justify-center pt-2">
                 <MediaUploadField
@@ -195,12 +192,12 @@ export default function Home() {
             </div>
 
             {/* Button Variant */}
-            <div className="rounded-xl border border-zinc-200/70 dark:border-zinc-800/60 bg-card p-5 space-y-3">
-              <div className="flex items-center justify-between text-xs">
-                <span className="font-semibold text-foreground">
+            <div className="rounded-2xl border border-zinc-200/40 dark:border-zinc-800/40 bg-background p-6 space-y-3 shadow-xs">
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
                   Button Variant
                 </span>
-                <span className="text-muted-foreground">Trigger Button</span>
+                <span className="text-xs text-muted-foreground">Trigger Button</span>
               </div>
               <div className="flex items-center justify-center h-28 pt-1">
                 <MediaUploadField
@@ -215,12 +212,12 @@ export default function Home() {
             </div>
 
             {/* Dropzone Spanning Both Columns */}
-            <div className="sm:col-span-2 rounded-xl border border-zinc-200/70 dark:border-zinc-800/60 bg-card p-5 space-y-3">
-              <div className="flex items-center justify-between text-xs">
-                <span className="font-semibold text-foreground">
+            <div className="sm:col-span-2 rounded-2xl border border-zinc-200/40 dark:border-zinc-800/40 bg-background p-6 space-y-3 shadow-xs">
+              <div className="flex items-center justify-between">
+                <span className="text-[11px] font-semibold text-zinc-500 dark:text-zinc-400 uppercase tracking-wider">
                   Dropzone Variant
                 </span>
-                <span className="text-muted-foreground">Drag & Drop Area</span>
+                <span className="text-xs text-muted-foreground">Drag & Drop Area</span>
               </div>
               <div className="pt-1">
                 <MediaUploadField
@@ -236,7 +233,7 @@ export default function Home() {
         </main>
 
         {/* Footer */}
-        <footer className="mx-auto max-w-5xl px-6 py-8 border-t border-border/50 text-xs text-muted-foreground flex items-center justify-between">
+        <footer className="mx-auto max-w-5xl px-6 py-6 border-t border-zinc-200/40 dark:border-zinc-800/40 text-xs text-muted-foreground flex items-center justify-between">
           <span>@hellomoksedul/media-uploader</span>
           <span>Zero-config React Package</span>
         </footer>
