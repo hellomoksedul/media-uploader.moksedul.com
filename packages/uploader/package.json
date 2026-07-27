@@ -2,7 +2,29 @@
   "name": "@hellomoksedul/media-uploader",
   "version": "1.0.0",
   "private": false,
-  "description": "A standalone media management and uploader library.",
+  "description": "A fully customizable, headless media upload library for React & Next.js. Includes image editor, cropper, filters, Unsplash integration and 4 field variants.",
+  "author": "Moksedul Islam <hello@moksedul.com>",
+  "license": "MIT",
+  "homepage": "https://media-uploader.moksedul.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/hellomoksedul/media-uploader.moksedul.com.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hellomoksedul/media-uploader.moksedul.com/issues"
+  },
+  "keywords": [
+    "media-uploader",
+    "image-upload",
+    "image-editor",
+    "image-cropper",
+    "file-upload",
+    "react",
+    "nextjs",
+    "tailwindcss",
+    "unsplash",
+    "headless"
+  ],
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -14,10 +36,16 @@
     },
     "./styles.css": "./dist/index.css"
   },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE"
+  ],
   "scripts": {
     "build": "tsup src/index.ts --format cjs,esm --dts",
     "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
-    "lint": "eslint src/"
+    "lint": "eslint src/",
+    "prepublishOnly": "pnpm build"
   },
   "peerDependencies": {
     "next": ">=13",
