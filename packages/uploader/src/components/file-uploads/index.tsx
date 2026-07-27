@@ -129,8 +129,8 @@ const MediaUploader: React.FC<MediaUploaderProps> = (props) => {
   return (
     <AlertDialog open={true} onOpenChange={onClose}>
       <AlertDialogContent
-        className="w-[95vw] max-w-[1200px] h-[90vh] max-h-[95vh] gap-0 flex flex-col overflow-hidden p-4 lg:p-6"
-        style={{ width: "95vw", maxWidth: "1200px", height: "90vh", display: "flex", flexDirection: "column" }}
+        className="w-[90vw] max-w-[90vw] h-[90vh] max-h-[95vh] gap-0 flex flex-col overflow-hidden p-4 lg:p-6"
+        style={{ width: "90vw", maxWidth: "90vw", height: "90vh", display: "flex", flexDirection: "column" }}
       >
         {isCropping && selectedFileUrls.length > 0 && (
           <ImageEditorDialog
