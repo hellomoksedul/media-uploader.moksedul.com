@@ -42,8 +42,8 @@
     "LICENSE"
   ],
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
-    "dev": "tsup src/index.ts --format cjs,esm --dts --watch",
+    "build": "node scripts/build-styles.js && tsup src/index.ts --format cjs,esm --dts",
+    "dev": "node scripts/build-styles.js && tsup src/index.ts --format cjs,esm --dts --watch",
     "lint": "eslint src/",
     "prepublishOnly": "pnpm build"
   },

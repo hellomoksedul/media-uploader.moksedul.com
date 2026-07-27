@@ -1,5 +1,15 @@
 import React, { createContext, useContext } from "react";
 import { useMediaLibrary } from "./file-uploads/useMediaLibrary";
+import { PACKAGE_STYLES } from "../generated-styles";
+
+export function StyleInjector() {
+  return (
+    <style
+      id="media-uploader-styles"
+      dangerouslySetInnerHTML={{ __html: PACKAGE_STYLES }}
+    />
+  );
+}
 
 export interface ApiMedia {
   id: string;
@@ -190,6 +200,7 @@ export function MediaProvider(props: MediaProviderProps) {
 
   return (
     <MediaContext.Provider value={value}>
+      <StyleInjector />
       <div style={style} className="w-full h-full">
         {children}
       </div>
