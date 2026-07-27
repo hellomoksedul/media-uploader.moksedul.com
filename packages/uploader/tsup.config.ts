@@ -13,7 +13,13 @@ export default defineConfig({
         if (!document.getElementById(id)) {
           var style = document.createElement('style');
           style.id = id;
-          style.textContent = "@layer utilities {\\n" + ${JSON.stringify(css)} + "\\n}";
+          var rawCss = ${JSON.stringify(css)};
+          var imports = [];
+          var bodyCss = rawCss.replace(/@import[^;]+;/g, function(match) {
+            imports.push(match);
+            return '';
+          });
+          style.textContent = imports.join('\\n') + '\\n@layer utilities {\\n' + bodyCss + '\\n}';
           document.head.appendChild(style);
         }
       }
