@@ -69,12 +69,16 @@ export default function Home() {
   const [mounted, setMounted] = useState(false);
 
   React.useEffect(() => {
-    setMounted(true);
-    const stored = localStorage.getItem("theme");
-    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-    const dark = stored === "dark" || (!stored && prefersDark);
-    setIsDark(dark);
-    document.documentElement.classList.toggle("dark", dark);
+    Promise.resolve().then(() => {
+      setMounted(true);
+      const stored = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
+      const dark = stored === "dark" || (!stored && prefersDark);
+      setIsDark(dark);
+      document.documentElement.classList.toggle("dark", dark);
+    });
   }, []);
 
   const toggleTheme = () => {
