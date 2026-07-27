@@ -1,6 +1,5 @@
 import { Button } from "@/components/common/Button";
 import { useMediaContext } from "../../MediaProvider";
-import { Check, Loader2, X } from "lucide-react";
 import React, { useRef } from "react";
 import { Cropper, CropperRef } from "react-mobile-cropper";
 // NOTE: cropper stylesheet is bundled via src/index.css (styles.css), not here.
@@ -135,35 +134,9 @@ const MobileImageEditor: React.FC<MobileImageEditorProps> = ({
   };
 
   return (
-    <div className="fixed inset-0 z-999 bg-black flex flex-col pointer-events-auto">
-      {/* Header */}
-      <div className="flex items-center justify-between px-4 py-3 bg-black/50 backdrop-blur-sm z-10 absolute top-0 left-0 right-0">
-        <Button
-          variant="ghost"
-          size="icon"
-          className="text-white hover:text-white hover:bg-background/20 rounded-full"
-          onClick={onClose}
-        >
-          <X className="w-6 h-6" />
-        </Button>
-        <span className="text-white font-medium">Edit Image</span>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="text-white hover:text-white hover:bg-background/20 rounded-full"
-          onClick={onCropHelper}
-          disabled={isLoading}
-        >
-          {isLoading ? (
-            <Loader2 className="w-6 h-6 animate-spin" />
-          ) : (
-            <Check className="w-6 h-6" />
-          )}
-        </Button>
-      </div>
-
+    <div className="h-full w-full flex flex-col bg-black">
       {/* Cropper */}
-      <div className="flex-1 w-full relative bg-black h-full pt-16 pb-4">
+      <div className="flex-1 w-full relative bg-black min-h-0">
         {localImageSrc && (
           <Cropper
             ref={cropperRef}
@@ -175,6 +148,28 @@ const MobileImageEditor: React.FC<MobileImageEditorProps> = ({
             }}
           />
         )}
+      </div>
+
+      {/* Actions */}
+      <div className="p-4 border-t border-white/10 bg-black shrink-0">
+        <div className="flex gap-3">
+          <Button
+            variant="ghost"
+            className="flex-1 text-white hover:text-white hover:bg-white/10"
+            onClick={onClose}
+            disabled={isLoading}
+          >
+            Cancel
+          </Button>
+          <Button
+            className="flex-1"
+            onClick={onCropHelper}
+            isLoading={isLoading}
+            loadingText="Saving..."
+          >
+            Save
+          </Button>
+        </div>
       </div>
     </div>
   );
