@@ -6,5 +6,17 @@ export default defineConfig({
   dts: true,
   clean: true,
   external: ['react', 'react-dom'],
-  injectStyle: false,
+  injectStyle(css) {
+    return `
+      if (typeof document !== 'undefined') {
+        var id = 'media-uploader-styles';
+        if (!document.getElementById(id)) {
+          var style = document.createElement('style');
+          style.id = id;
+          style.textContent = ${JSON.stringify(css)};
+          document.head.appendChild(style);
+        }
+      }
+    `;
+  },
 });
