@@ -1,11 +1,10 @@
 @import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
 
 /* Third-party cropper styles */
 @import "react-advanced-cropper/dist/style.css";
 @import "react-mobile-cropper/dist/style.css";
-
-/* v4-native animation utilities */
-@import "tw-animate-css";
 
 /* Scan package source files */
 @source "../src";
