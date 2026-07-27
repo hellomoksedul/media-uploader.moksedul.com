@@ -82,8 +82,8 @@ export function ImageEditorDialog({
   return (
     <div className="absolute inset-0 z-50 bg-background rounded-xl overflow-hidden flex flex-col">
       {/* Header */}
-      <div className="relative flex items-center justify-between p-4 border-b border-border shrink-0 gap-4">
-        <div className="space-y-1 min-w-0 flex-1">
+      <div className="flex items-center justify-between p-4 border-b border-border shrink-0 gap-4">
+        <div className="space-y-1 min-w-0 max-w-xs shrink-0">
           <h3 className="font-medium text-base text-foreground leading-tight truncate">
             Image Editor
           </h3>
@@ -96,10 +96,10 @@ export function ImageEditorDialog({
         </div>
 
         {/* Center Portal Target */}
-        <div className="absolute inset-y-0 left-0 md:left-92.5 right-0 flex items-center justify-center pointer-events-none z-10">
+        <div className="flex-1 flex items-center justify-center">
           <div
             id="image-editor-header-center"
-            className="pointer-events-auto flex items-center justify-center min-h-8"
+            className="flex items-center justify-center min-h-8"
           ></div>
         </div>
 

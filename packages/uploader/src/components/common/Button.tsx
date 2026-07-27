@@ -102,8 +102,10 @@ const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         {!isLoading && leftIcon && <span className="shrink-0">{leftIcon}</span>}
         {isLoading && loadingText ? (
           <span>{loadingText}</span>
+        ) : typeof children === "string" ? (
+          <span className="truncate">{children}</span>
         ) : (
-          <span className="truncate">{children as any}</span>
+          children
         )}
         {!isLoading && rightIcon && (
           <span className="shrink-0">{rightIcon}</span>
