@@ -42,7 +42,7 @@
   --radius-xl: calc(var(--radius, 0.625rem) + 4px);
 }
 
-:root {
+.media-uploader-scope {
   --radius: 0.625rem;
   --background: #ffffff;
   --foreground: #09090b;
@@ -64,7 +64,8 @@
   --ring: #a1a1aa;
 }
 
-.dark {
+.dark .media-uploader-scope,
+.media-uploader-scope.dark {
   --background: #09090b;
   --foreground: #fafafa;
   --card: #18181b;

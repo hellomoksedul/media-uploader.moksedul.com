@@ -258,7 +258,7 @@ export function MediaUploadField({
   // ═══════════════════════════════════════════════════════════════════════════
   if (variant === "button") {
     return (
-      <div className={cn("inline-flex items-center gap-3", className)}>
+      <div className={cn("media-uploader-scope inline-flex items-center gap-3", className)}>
         {filled && (
           <span className="relative inline-flex size-10 shrink-0 overflow-hidden rounded-md border border-border">
             {preview}
@@ -299,7 +299,7 @@ export function MediaUploadField({
     const emptyBorder = resolveBorderClass(borderVariant ?? "solid", borderClass);
     return (
       <div
-        className={cn("relative shrink-0", className)}
+        className={cn("media-uploader-scope relative shrink-0", className)}
         style={{ width: size, height: size }}
       >
         <button
@@ -360,7 +360,7 @@ export function MediaUploadField({
       if (file) openDialog(file);
     };
     return (
-      <div className={cn("w-full", className)} style={{ width: dim(width) }}>
+      <div className={cn("media-uploader-scope w-full", className)} style={{ width: dim(width) }}>
         <div
           role="button"
           tabIndex={disabled ? -1 : 0}
@@ -424,7 +424,7 @@ export function MediaUploadField({
   const emptyBorder = resolveBorderClass(borderVariant, borderClass);
 
   return (
-    <div className={cn("relative", className)} style={boxStyle}>
+    <div className={cn("media-uploader-scope relative", className)} style={boxStyle}>
       <button
         type="button"
         disabled={disabled}

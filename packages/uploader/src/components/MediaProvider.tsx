@@ -201,7 +201,7 @@ export function MediaProvider(props: MediaProviderProps) {
   return (
     <MediaContext.Provider value={value}>
       <StyleInjector />
-      <div style={style} className="w-full h-full">
+      <div style={style} className="media-uploader-scope w-full h-full">
         {children}
       </div>
     </MediaContext.Provider>
