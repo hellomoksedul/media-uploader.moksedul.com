@@ -147,7 +147,7 @@ export function MediaPreviewDialog({
         <DialogContent
           showCloseButton={false}
           aria-describedby={undefined}
-          className="media-uploader-scope p-0 gap-0 bg-background dark:bg-zinc-900 rounded-xl"
+          className="media-uploader-scope p-0 gap-0 bg-card rounded-xl"
           style={{
             width: "calc(100% - 2rem)",
             maxWidth: "1200px",
@@ -301,7 +301,7 @@ export function MediaPreviewDialog({
                 </div>
 
                 {/* Sidebar */}
-                <div className="w-full md:w-[320px] bg-background dark:bg-zinc-900 overflow-y-auto shrink-0 flex flex-col">
+                <div className="w-full md:w-[320px] bg-card overflow-y-auto shrink-0 flex flex-col">
                   <div className="p-6 border-b border-border">
                     <h4 className="text-xs font-bold text-indigo-500 uppercase tracking-wider mb-4">
                       File Details

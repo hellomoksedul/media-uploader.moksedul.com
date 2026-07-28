@@ -20,10 +20,10 @@ export const Sidebar: React.FC<SidebarProps> = ({
   ] as const;
 
   return (
-    <div className="flex flex-col md:flex-row w-full h-full bg-background dark:bg-[#111111] text-muted-foreground dark:text-foreground">
-      
+    <div className="flex flex-col md:flex-row w-full h-full bg-card text-muted-foreground dark:text-foreground">
+
       {/* Navigation Icons (Left on Desktop) */}
-      <div className="flex flex-row md:flex-col items-center justify-center md:justify-start w-full md:w-16 bg-muted/50 dark:bg-[#161616] py-4 px-2 gap-3 order-2 md:order-1 shrink-0 border-t md:border-t-0 md:border-r border-border dark:border-border">
+      <div className="flex flex-row md:flex-col items-center justify-center md:justify-start w-full md:w-16 bg-muted/50 py-4 px-2 gap-3 order-2 md:order-1 shrink-0 border-t md:border-t-0 md:border-r border-border">
         {tools.map((tool) => (
           <Button
             key={tool.id}

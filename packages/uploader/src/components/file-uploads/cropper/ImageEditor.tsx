@@ -312,8 +312,8 @@ export default function ImageEditor({
   };
 
   return (
-    <div className="flex flex-col md:flex-row h-full w-full bg-background overflow-hidden">
-      <div className="w-full md:w-92.5 shrink-0 border-r z-10 flex flex-col h-full bg-background dark:bg-[#111111]">
+    <div className="flex flex-col md:flex-row h-full w-full bg-card overflow-hidden">
+      <div className="w-full md:w-92.5 shrink-0 border-r border-border z-10 flex flex-col h-full bg-card">
         <div className="flex-1 overflow-hidden min-h-0">
           <Sidebar activeTool={activeTool} setActiveTool={setActiveTool}>
             {activeTool === "crop" && (
@@ -348,7 +348,7 @@ export default function ImageEditor({
             )}
           </Sidebar>
         </div>
-        <div className="p-6 bg-muted/50 dark:bg-[#111111] border-t dark:border-border">
+        <div className="p-6 bg-card border-t border-border">
           <div className="flex gap-3">
             <Button
               variant="outline"

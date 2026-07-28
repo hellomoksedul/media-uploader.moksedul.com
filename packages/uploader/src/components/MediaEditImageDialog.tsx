@@ -101,7 +101,7 @@ export function MediaEditImageDialog({
       : fileName.split("?")[0];
 
   return (
-    <div className="media-uploader-scope absolute inset-0 z-50 bg-background rounded-xl overflow-hidden flex flex-col">
+    <div className="media-uploader-scope absolute inset-0 z-50 bg-card rounded-xl overflow-hidden flex flex-col">
       <div className="relative flex items-center justify-between p-4 border-b border-border shrink-0 gap-4">
         <div className="space-y-1 min-w-0 flex-1">
           <h3 className="font-medium text-base text-foreground leading-tight truncate">
@@ -132,7 +132,7 @@ export function MediaEditImageDialog({
         </div>
       </div>
 
-      <div className="flex-1 relative min-h-0 bg-background">
+      <div className="flex-1 relative min-h-0 bg-card">
         <CustomImageEditor
           imageSrc={imageUrl}
           onClose={onClose}

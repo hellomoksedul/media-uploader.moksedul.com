@@ -129,7 +129,7 @@ const MediaUploader: React.FC<MediaUploaderProps> = (props) => {
   return (
     <AlertDialog open={true} onOpenChange={onClose}>
       <AlertDialogContent
-        className="w-[90vw] max-w-[90vw] h-[90vh] max-h-[95vh] gap-0 flex flex-col overflow-hidden p-4 lg:p-6"
+        className="w-[90vw] max-w-[90vw] h-[90vh] max-h-[95vh] gap-0 flex flex-col overflow-hidden p-4 lg:p-6 bg-card"
         style={{ width: "90vw", maxWidth: "90vw", height: "90vh", display: "flex", flexDirection: "column" }}
       >
         <div className="flex items-center justify-between shrink-0 pb-2 gap-4">
