@@ -1,23 +1,23 @@
 # media-uploader (monorepo)
 
-Home of **[`@hellomoksedul/media-uploader`](./packages/uploader)** — a headless,
+Home of **[`@hellokit/media-uploader`](./packages/uploader)** — a headless,
 customizable media management + uploader library for **React 18/19 + Next.js**.
 
 ## Packages
 
-| Package | Description |
-|---|---|
-| [`packages/uploader`](./packages/uploader) | `@hellomoksedul/media-uploader` — the published library. See its [README](./packages/uploader/README.md) for full usage. |
-| `demo` | Local demo app for developing the library. |
+| Package                                    | Description                                                                                                         |
+| ------------------------------------------ | ------------------------------------------------------------------------------------------------------------------- |
+| [`packages/uploader`](./packages/uploader) | `@hellokit/media-uploader` — the published library. See its [README](./packages/uploader/README.md) for full usage. |
+| `demo`                                     | Local demo app for developing the library.                                                                          |
 
 ## Quick start
 
 ```bash
-pnpm add @hellomoksedul/media-uploader
+pnpm add @hellokit/media-uploader
 ```
 
 ```tsx
-import { MediaProvider } from "@hellomoksedul/media-uploader";
+import { MediaProvider } from "@hellokit/media-uploader";
 
 <MediaProvider
   adapter={{
@@ -40,7 +40,7 @@ import { MediaProvider } from "@hellomoksedul/media-uploader";
   config={{ theme: { primary: "#588aff", radius: "0.625rem" } }}
 >
   {children}
-</MediaProvider>
+</MediaProvider>;
 ```
 
 Then use the exported components:
@@ -63,7 +63,7 @@ Full API, theming, CORS proxy, and styling notes live in the
 pnpm install
 
 # build the library (emits dist/ + bundled scoped styles)
-pnpm --filter @hellomoksedul/media-uploader build
+pnpm --filter @hellokit/media-uploader build
 
 # run the demo app
 pnpm --filter demo dev

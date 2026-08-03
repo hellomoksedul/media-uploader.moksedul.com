@@ -1,4 +1,4 @@
-# @hellomoksedul/media-uploader
+# @hellokit/media-uploader
 
 A powerful, customizable, and **headless** media management + uploader library for
 **React 18/19 + Next.js**.
@@ -19,11 +19,11 @@ A powerful, customizable, and **headless** media management + uploader library f
 
 ## Requirements
 
-| Peer dependency | Version |
-|---|---|
-| `react` | `^18` or `^19` |
-| `react-dom` | `^18` or `^19` |
-| `next` | `>=13` |
+| Peer dependency | Version        |
+| --------------- | -------------- |
+| `react`         | `^18` or `^19` |
+| `react-dom`     | `^18` or `^19` |
+| `next`          | `>=13`         |
 
 > Uses `next/image` internally (via `SmartImage`) — designed for **Next.js**.
 
@@ -32,7 +32,7 @@ A powerful, customizable, and **headless** media management + uploader library f
 ## Installation
 
 ```bash
-pnpm add @hellomoksedul/media-uploader
+pnpm add @hellokit/media-uploader
 ```
 
 ---
@@ -43,7 +43,7 @@ pnpm add @hellomoksedul/media-uploader
 
 Styles are **automatically injected** when `MediaProvider` mounts (scoped under
 `.media-uploader-scope`). You do **not** need to import any CSS. A prebuilt
-`@hellomoksedul/media-uploader/styles.css` is also shipped if you prefer to import
+`@hellokit/media-uploader/styles.css` is also shipped if you prefer to import
 it manually.
 
 ### 2. Mount the Toaster once
@@ -74,14 +74,15 @@ upload / delete / update — no `useMemo` needed on your side.
 ```tsx
 "use client";
 
-import { MediaProvider } from "@hellomoksedul/media-uploader";
+import { MediaProvider } from "@hellokit/media-uploader";
 
 export function MediaProviderWrapper({ children }) {
   return (
     <MediaProvider
       adapter={{
         // Required — fetch a page of media.
-        list: ({ page, limit, search }) => listMediaAction({ page, limit, search }),
+        list: ({ page, limit, search }) =>
+          listMediaAction({ page, limit, search }),
         // Required — upload one file, return the created record.
         upload: (file, folder) => {
           const fd = new FormData();
@@ -110,9 +111,11 @@ export function MediaProviderWrapper({ children }) {
       config={{
         theme: { primary: "#588aff", radius: "0.625rem" },
         // Rewrite CDN host for display / copy-URL
-        resolveMediaUrl: (url) => url.replace("cdn.example.com", "media.example.com"),
+        resolveMediaUrl: (url) =>
+          url.replace("cdn.example.com", "media.example.com"),
         // Same-origin proxy so the editor's <canvas> isn't CORS-tainted while cropping
-        resolveProxyUrl: (url) => `/api/media-proxy/${url.replace(/^https?:\/\/[^/]+\//, "")}`,
+        resolveProxyUrl: (url) =>
+          `/api/media-proxy/${url.replace(/^https?:\/\/[^/]+\//, "")}`,
       }}
     >
       {children}
@@ -146,35 +149,37 @@ update?: (id: string, patch: { filename?: string; folder?: string })
 ### `MediaUploadField` — inline upload field
 
 ```tsx
-import { MediaUploadField } from "@hellomoksedul/media-uploader";
+import { MediaUploadField } from "@hellokit/media-uploader";
 
 <MediaUploadField
   value={imageUrl}
   onChange={setImageUrl}
-  variant="box"            // "box" | "button" | "avatar" | "dropzone"
+  variant="box" // "box" | "button" | "avatar" | "dropzone"
   aspectRatio={1}
   outputWidth={1000}
   outputFormat="webp"
-  fileType="image"         // "all" | "image" | "video"
+  fileType="image" // "all" | "image" | "video"
   label="Click to upload"
   hint="1000 × 1000 px"
-/>
+/>;
 ```
 
 ### `MediaUploadDialog` — tabbed upload dialog
 
 ```tsx
-import { MediaUploadDialog } from "@hellomoksedul/media-uploader";
+import { MediaUploadDialog } from "@hellokit/media-uploader";
 
-{isOpen && (
-  <MediaUploadDialog
-    onClose={() => setIsOpen(false)}
-    onConfirm={(urls) => setIsOpen(false)}
-    fileType="image"       // "all" | "image" | "video"
-    imageRatio={16 / 9}    // optional aspect-ratio constraint
-    isMultiple={false}
-  />
-)}
+{
+  isOpen && (
+    <MediaUploadDialog
+      onClose={() => setIsOpen(false)}
+      onConfirm={(urls) => setIsOpen(false)}
+      fileType="image" // "all" | "image" | "video"
+      imageRatio={16 / 9} // optional aspect-ratio constraint
+      isMultiple={false}
+    />
+  );
+}
 ```
 
 ### `MediaPreviewDialog` — view / rename / delete / edit
@@ -185,17 +190,17 @@ download, and a pencil button that opens the image editor. Rename/delete go thro
 the provider's `updateMedia` / `deleteMedia`.
 
 ```tsx
-import { MediaPreviewDialog, type ApiMedia } from "@hellomoksedul/media-uploader";
+import { MediaPreviewDialog, type ApiMedia } from "@hellokit/media-uploader";
 
 const [preview, setPreview] = useState<ApiMedia | null>(null);
 
 <MediaPreviewDialog
   previewItem={preview}
   setPreviewItem={setPreview}
-  items={mediaList}                 // optional — for prev/next; defaults to the provider list
-  onRefresh={() => refetch()}       // called after rename / delete / edit
+  items={mediaList} // optional — for prev/next; defaults to the provider list
+  onRefresh={() => refetch()} // called after rename / delete / edit
   // onDelete={(id) => ...}         // optional — override the built-in confirm+delete
-/>
+/>;
 ```
 
 ### `MediaEditImageDialog` — full-screen image editor
@@ -205,17 +210,17 @@ uploads through the provider's `uploadMedia`. `MediaPreviewDialog` opens this fo
 you, but you can use it directly too.
 
 ```tsx
-import { MediaEditImageDialog } from "@hellomoksedul/media-uploader";
+import { MediaEditImageDialog } from "@hellokit/media-uploader";
 
 <MediaEditImageDialog
   isOpen={open}
   onClose={() => setOpen(false)}
-  imageUrl={item.url}               // plain URL — CORS proxying uses config.resolveProxyUrl
+  imageUrl={item.url} // plain URL — CORS proxying uses config.resolveProxyUrl
   fileName={item.filename}
-  aspectRatio={1}                   // optional
-  outputWidth={1920}                // optional
+  aspectRatio={1} // optional
+  outputWidth={1920} // optional
   onSaveComplete={() => setOpen(false)}
-/>
+/>;
 ```
 
 ### `SmartImage`
@@ -230,9 +235,9 @@ Responsive `next/image` wrapper used internally; exported for convenience.
 interface ApiMedia {
   id: string;
   url: string;
-  folder: string;          // "images" | "videos" | "documents"
+  folder: string; // "images" | "videos" | "documents"
   filename: string;
-  contentType: string;     // MIME type
+  contentType: string; // MIME type
   sizeBytes: number;
   width: number | null;
   height: number | null;

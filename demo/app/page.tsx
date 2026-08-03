@@ -5,7 +5,7 @@ import {
   MediaProvider,
   MediaUploadDialog,
   MediaUploadField,
-} from "@hellomoksedul/media-uploader";
+} from "@hellokit/media-uploader";
 import React, { useMemo, useRef, useState } from "react";
 
 export default function Home() {
@@ -86,7 +86,7 @@ export default function Home() {
                 MU
               </div>
               <span className="text-sm font-semibold tracking-tight text-foreground">
-                @hellomoksedul/media-uploader
+                @hellokit/media-uploader
               </span>
             </div>
 
@@ -108,7 +108,8 @@ export default function Home() {
                 Media Uploader Sandbox
               </h1>
               <p className="text-sm text-muted-foreground">
-                Zero-config React component suite with built-in cropper, filters, and dialogs.
+                Zero-config React component suite with built-in cropper,
+                filters, and dialogs.
               </p>
             </div>
 
@@ -129,7 +130,9 @@ export default function Home() {
                 <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
                   Box Variant (1:1)
                 </span>
-                <span className="text-xs text-muted-foreground">1000 × 1000 px</span>
+                <span className="text-xs text-muted-foreground">
+                  1000 × 1000 px
+                </span>
               </div>
               <div className="max-w-52 mx-auto pt-1">
                 <MediaUploadField
@@ -153,7 +156,9 @@ export default function Home() {
                 <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
                   Cover Variant (16:9)
                 </span>
-                <span className="text-xs text-muted-foreground">Image or Video</span>
+                <span className="text-xs text-muted-foreground">
+                  Image or Video
+                </span>
               </div>
               <div className="pt-1">
                 <MediaUploadField
@@ -174,7 +179,9 @@ export default function Home() {
                 <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
                   Avatar Variant
                 </span>
-                <span className="text-xs text-muted-foreground">Round Profile</span>
+                <span className="text-xs text-muted-foreground">
+                  Round Profile
+                </span>
               </div>
               <div className="flex justify-center pt-2">
                 <MediaUploadField
@@ -197,7 +204,9 @@ export default function Home() {
                 <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
                   Button Variant
                 </span>
-                <span className="text-xs text-muted-foreground">Trigger Button</span>
+                <span className="text-xs text-muted-foreground">
+                  Trigger Button
+                </span>
               </div>
               <div className="flex items-center justify-center h-28 pt-1">
                 <MediaUploadField
@@ -217,7 +226,9 @@ export default function Home() {
                 <span className="text-[11px] font-semibold text-muted-foreground uppercase tracking-wider">
                   Dropzone Variant
                 </span>
-                <span className="text-xs text-muted-foreground">Drag & Drop Area</span>
+                <span className="text-xs text-muted-foreground">
+                  Drag & Drop Area
+                </span>
               </div>
               <div className="pt-1">
                 <MediaUploadField
@@ -234,7 +245,7 @@ export default function Home() {
 
         {/* Footer */}
         <footer className="mx-auto max-w-5xl px-6 py-6 border-t border-border text-xs text-muted-foreground flex items-center justify-between">
-          <span>@hellomoksedul/media-uploader</span>
+          <span>@hellokit/media-uploader</span>
           <span>Zero-config React Package</span>
         </footer>
       </div>
