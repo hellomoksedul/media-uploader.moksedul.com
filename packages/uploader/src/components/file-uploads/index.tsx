@@ -130,7 +130,13 @@ const MediaUploader: React.FC<MediaUploaderProps> = (props) => {
     <AlertDialog open={true} onOpenChange={onClose}>
       <AlertDialogContent
         className="w-[90vw] max-w-[90vw] h-[90vh] max-h-[95vh] gap-0 flex flex-col overflow-hidden p-4 lg:p-6 bg-card"
-        style={{ width: "90vw", maxWidth: "90vw", height: "90vh", display: "flex", flexDirection: "column" }}
+        style={{
+          width: "90vw",
+          maxWidth: "90vw",
+          height: "90vh",
+          display: "flex",
+          flexDirection: "column",
+        }}
       >
         <div className="flex items-center justify-between shrink-0 pb-2 gap-4">
           <AlertDialogTitle className="text-lg font-semibold shrink-0">
@@ -183,7 +189,7 @@ const MediaUploader: React.FC<MediaUploaderProps> = (props) => {
           ) : (
             <>
               <div className="flex flex-col sm:flex-row border-b border-border items-center justify-between gap-3 shrink-0 pb-3">
-                <div className="flex items-center gap-1 bg-muted dark:bg-muted/50 p-1 rounded-lg w-full sm:w-auto overflow-x-auto ring-1 ring-black/5 dark:ring-white/5">
+                <div className="hidden sm:flex items-center gap-1 bg-muted dark:bg-muted/50 p-1 rounded-lg w-full sm:w-auto overflow-x-auto ring-1 ring-black/5 dark:ring-white/5">
                   {tabItems.map((tab) => (
                     <button
                       type="button"
@@ -214,6 +220,31 @@ const MediaUploader: React.FC<MediaUploaderProps> = (props) => {
                         className="pl-9 pr-4 h-9 bg-background dark:bg-background rounded-lg border-border/60 dark:border-border/80 focus-visible:ring-primary/20 shadow-none text-sm"
                       />
                     </div>
+                    <div className="sm:hidden relative shrink-0">
+                      <Button
+                        variant="outline"
+                        className="h-9 w-9 p-0 rounded-lg relative overflow-hidden"
+                      >
+                        <FiUpload />
+                        <input
+                          type="file"
+                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                          onChange={(e) => {
+                            if (e.target.files && e.target.files[0]) {
+                              onFileUpload(e.target.files[0]);
+                              e.target.value = "";
+                            }
+                          }}
+                          accept={
+                            resolvedFileType === "image"
+                              ? "image/*"
+                              : resolvedFileType === "video"
+                                ? "video/*"
+                                : "*/*"
+                          }
+                        />
+                      </Button>
+                    </div>
                   </div>
                 )}
               </div>
@@ -243,10 +274,10 @@ const MediaUploader: React.FC<MediaUploaderProps> = (props) => {
                 )}
               </div>
               {activeTab !== 5 && (
-                <div className="w-full flex justify-end pt-5 border-t border-border items-center gap-5 shrink-0">
+                <div className="w-full flex justify-end pt-5 border-t border-border items-center gap-3 shrink-0">
                   <Button
                     variant="outline"
-                    size="sm"
+                    className="px-6"
                     onClick={() =>
                       isVideoUpload ? setIsVideoUpload(false) : onClose()
                     }
@@ -255,7 +286,7 @@ const MediaUploader: React.FC<MediaUploaderProps> = (props) => {
                   </Button>
                   <Button
                     variant="default"
-                    size="sm"
+                    className="px-6"
                     onClick={handleConfirm}
                     disabled={selectedFileUrls.length === 0}
                   >
