@@ -66,11 +66,11 @@ export function ConfirmDialog({
           </div>
         </div>
 
-        <div className="px-6 pb-6 flex flex-row gap-3 justify-center w-full">
+        <div className="px-6 pb-6 grid grid-cols-2 gap-3 w-full">
           <AlertDialogCancel
             disabled={isLoading}
             onClick={onClose}
-            className="m-0 h-9 px-6 bg-background dark:bg-muted hover:bg-muted dark:hover:bg-muted border-border dark:border-border"
+            className="w-full m-0 h-9 px-6 bg-background dark:bg-muted hover:bg-muted dark:hover:bg-muted border-border dark:border-border"
           >
             {cancelText}
           </AlertDialogCancel>
@@ -81,7 +81,7 @@ export function ConfirmDialog({
               onConfirm();
             }}
             className={cn(
-              "m-0 h-9 px-6 shadow-sm",
+              "w-full m-0 h-9 px-6 shadow-sm",
               isDestructive
                 ? "bg-red-500 hover:bg-red-600 text-white dark:bg-red-600 dark:hover:bg-red-700 focus:ring-red-500"
                 : "bg-primary hover:bg-primary/90 text-primary-foreground",
