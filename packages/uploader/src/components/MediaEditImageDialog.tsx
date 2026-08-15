@@ -1,10 +1,10 @@
 "use client";
 
-import { Button } from "./common/Button";
 import { Loader2, X } from "lucide-react";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
+import { Button } from "./common/Button";
 
 const CustomImageEditor = dynamic(
   () => import("./file-uploads/cropper/ImageEditor"),
@@ -81,7 +81,7 @@ export function MediaEditImageDialog({
     // Portals to <body>, outside any parent scope — wrap so the package's
     // scoped styles (incl. the cropper stylesheet) apply.
     return createPortal(
-      <div className="media-uploader-scope">
+      <div className="media-uploader-scope fixed inset-0 z-9999 bg-background flex flex-col h-dvh w-full overflow-hidden">
         <MobileImageEditor
           imageSrc={imageUrl}
           onClose={onClose}

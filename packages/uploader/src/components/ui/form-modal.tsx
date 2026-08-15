@@ -2,10 +2,10 @@
 
 import { Button } from "@/components/common/Button";
 import {
-  Dialog,
-  DialogContent,
-  DialogFooter,
-  DialogTitle,
+    Dialog,
+    DialogContent,
+    DialogFooter,
+    DialogTitle,
 } from "@/components/ui/dialog";
 import { cn } from "@/lib/utils";
 import React from "react";
@@ -78,7 +78,7 @@ export function FormModal({
           {icon && (
             <div
               className={cn(
-                "flex size-10 md:size-12 shrink-0 items-center justify-center rounded-full bg-blue-50 dark:bg-blue-500/10 text-blue-500",
+                "flex size-10 md:size-12 shrink-0 items-center justify-center rounded-full bg-blue-50 dark:bg-themePrimaryColor/10 text-themePrimaryColor",
                 iconContainerClassName,
               )}
             >
